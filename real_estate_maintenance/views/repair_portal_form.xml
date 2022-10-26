@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="website_menu_service_request" model="website.menu">
+        <field name="name">Request Repair</field>
+        <field name="url">/repair_webform</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">50</field>
+    </record>
+
+    <template id="create_repair" name="Create Repair">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <h2 class="text-muted">
+                            Submit a Ticket
+                        </h2>
+                        <div class="container">
+                            <form role="form" action="/create/webrepair" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-auto s_website_form_label" style="width: 200px" for="repair4">
+                                            <span class="s_website_form_label_content">Name</span>
+                                        </label>
+                                        <div class="col-sm col-xs-12">
+                                            <input type="text" name="partner_name" t-att-value="partner_name" id="partner_name"
+                                                   class="form-control" placeholder="e.g. John Smith" required="required"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-auto s_website_form_label" style="width: 200px" for="repair4">
+                                            <span class="s_website_form_label_content">Email</span>
+                                        </label>
+                                        <div class="col-sm col-xs-12">
+                                            <input type="email" name="email_id" t-att-value="email_id" id="email_id"
+                                                   class="form-control" required="required"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-auto s_website_form_label" style="width: 200px" for="repair4">
+                                            <span class="s_website_form_label_content">Main Property</span>
+                                        </label>
+                                        <div class="col-sm col-xs-12">
+                                            <select name="building" id="building"
+                                                    class="form-control link-style">
+                                                <option value="">...</option>
+                                                <t t-foreach="buildings" t-as="b">
+                                                    <option t-att-value="b.id">
+                                                        <t t-esc="b.name" t-att-value="b.id"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-auto s_website_form_label" style="width: 200px" for="repair4">
+                                            <span class="s_website_form_label_content">Sub Property</span>
+                                        </label>
+                                        <div class="col-sm col-xs-12">
+                                            <select name="product_id" id="product_id"
+                                                    class="form-control link-style" required="required">
+                                                <option value="">...</option>
+                                                <t t-foreach="properties" t-as="product">
+                                                    <option t-att-value="product.id">
+                                                        <t t-esc="product.name" t-att-value="product.id"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 s_website_form_field" data-type="text" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-auto s_website_form_label" style="width: 200px" for="repair4">
+                                            <span class="s_website_form_label_content">Description</span>
+                                        </label>
+                                        <div class="col-sm col-xs-12">
+                                            <textarea id="repair4" class="form-control s_website_form_input" name="description" required="required"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 s_website_form_field s_website_form_custom" data-type="binary" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-auto s_website_form_label" style="width: 200px" for="repair5">
+                                            <span class="s_website_form_label_content">Attachment(s)</span>
+                                        </label>
+                                        <div class="col-sm col-xs-12">
+                                            <input id="repair5" type="file" name="attachments" class="form-control s_website_form_input" multiple="multiple" accept="image/*"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-12 s_website_form_submit" data-name="Submit Button">
+                                    <div style="width: 200px;" class="s_website_form_label"/>
+                                <button type="submit" class="btn btn-primary btn-lg s_website_form_send">Submit</button>
+                                    <span id="s_website_form_result"></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record id="repair_thanks" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/repair-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">real_estate_maintenance.repair_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="real_estate_maintenance.repair_thanks">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container d-flex flex-column justify-content-center h-100">
+                            <h1></h1>
+                            <div class="row justify-content-center">
+                                <h1 class="text-center">
+                                    <i class="fa fa-check-circle fa-1x text-success mr-2" role="img" aria-label="Success" title="Success"/>
+                                </h1>
+                                <h1 class="text-center">Thank you for submitting your issue, our team will get right on it!</h1>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+
+</odoo>

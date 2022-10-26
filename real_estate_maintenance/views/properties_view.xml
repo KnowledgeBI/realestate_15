@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="property_unit_view_form_maintenance" model="ir.ui.view">
+        <field name="name">product.template.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="itsys_real_estate.building_unit_form"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button class="oe_stat_button" name="view_maintenance" icon="fa-gears"
+                        type="object" attrs="{'invisible': [('maintenance_count', '=', 0)]}">
+                    <field name="maintenance_count" string="Maintenance" widget="statinfo" />
+                </button>
+            </div>
+        </field>
+    </record>
+
+    <record id="building_view_form_maintenance" model="ir.ui.view">
+        <field name="name">building.form</field>
+        <field name="model">building</field>
+        <field name="inherit_id" ref="itsys_real_estate.building_form"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button class="oe_stat_button" name="view_maintenance" icon="fa-gears"
+                        type="object" attrs="{'invisible': [('maintenance_count', '=', 0)]}">
+                    <field name="maintenance_count" string="Maintenance" widget="statinfo" />
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>
