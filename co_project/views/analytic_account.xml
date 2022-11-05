@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_analytic_account_form" model="ir.ui.view">
+            <field name="name">account.analytic.account.form</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="mode">primary</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="picking_type_id"/>
+                    <field name="is_project"/>
+                </xpath>
+
+                <xpath expr="//field[@name='group_id']" position="after">
+                    <field name="parent_group_id"/>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="margin_perc"/>
+                </xpath>
+
+
+            </field>
+        </record>
+
+
+        <record id="view_account_analytic_account_search" model="ir.ui.view">
+            <field name="name">account.analytic.account.form</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_search"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//filter[@name='associatedpartner']" position="after">
+                    <filter string="Parent Group" name="parent_group" context="{'group_by': 'parent_group_id'}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <!--TODO the most powerfull window action-->
+        <record id="action_project_form" model="ir.actions.act_window">
+            <field name="name">Projects</field>
+            <field name="res_model">account.analytic.account</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="target">current</field>
+            <field name="context">{'search_default_active':1,'default_is_project':1}</field>
+            <field name="domain">[('is_project','=',True)]</field>
+            <field name="search_view_id" ref="analytic.view_account_analytic_account_search"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_project_form_view_form">
+            <field name="view_mode">form</field>
+            <field name="sequence">2</field>
+            <field name="view_id" ref="view_account_analytic_account_form"/>
+            <field name="act_window_id" ref="action_project_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_project_form_view_tree">
+            <field name="view_mode">tree</field>
+            <field name="sequence">1</field>
+            <field name="view_id" ref="analytic.view_account_analytic_account_list"/>
+            <field name="act_window_id" ref="action_project_form"/>
+        </record>
+
+
+    </data>
+</odoo>

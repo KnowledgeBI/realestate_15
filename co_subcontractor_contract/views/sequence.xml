@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="seq_subcontractor_contract" model="ir.sequence">
+            <field name="name">Subcontractor Contract Seq</field>
+            <field name="code">seq.subcontractor.contract</field>
+            <field name="prefix">SUB/%(year)s/</field>
+            <field name="padding">4</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">Customer Contract</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="mode">primary</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="is_contract" readonly="1" force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="analytic_account_id"
+                           context="{'default_partner_id':partner_invoice_id, 'default_name':name,'default_is_project':1}"
+                           attrs="{'readonly': [('state','=','sale')]}"
+                           groups="analytic.group_analytic_accounting"
+                           force_save="1"
+                           domain="[('is_project','=',True)]"
+                           required="1"
+                           string="Project"
+                    />
+                    <label for="cost_plus"/>
+                    <div>
+                        <field name="cost_plus" class="oe_inline"/>
+                        <span class="oe_inline">%</span>
+                    </div>
+                    <label for="margin_perc"/>
+                    <div>
+                        <field name="margin_perc" class="oe_inline"/>
+                        <span class="oe_inline">%</span>
+                    </div>
+                    <field name="tax_ids" widget="many2many_tags"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="context">
+                        {'default_tax_id':tax_ids,'general_taxes':True,'manual_margin':True,'manual_price':True,'default_margin_perc':margin_perc,'default_cost_plus_perc':cost_plus}
+                    </attribute>
+                </xpath>
+                <xpath expr="//field[@name='tax_totals_json']" position="after">
+
+                    <label for="total_cost" groups="base.group_user"/>
+                    <div class="text-nowrap" groups="base.group_user">
+                        <field name="total_cost" class="oe_inline"/>
+                    </div>
+                    <label for="total_margin" groups="base.group_user"/>
+                    <div class="text-nowrap" groups="base.group_user">
+                        <field name="total_margin" class="oe_inline"/>
+                    </div>
+                </xpath>
+
+<!--                <xpath expr="//field[@name='amount_untaxed']" position="before">-->
+<!--                    <field name="total_cost" widget='monetary'-->
+<!--                           options="{'currency_field': 'currency_id'}"/>-->
+<!--                </xpath>-->
+                <xpath expr="//field[@name='order_line']//tree//field[@name='product_id']" position="before">
+                    <field name="product_categ_id" optional="show"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
+                    <field name="cost_plus" optional="show"/>
+                    <field name="cost_plus_perc" invisible="1"/>
+                    <field name="unit_cost" optional="show"/>
+                    <field name="total_cost" optional="show"/>
+                    <field name="margin_perc" optional="show"/>
+                    <field name="margin_price" optional="show"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']//tree//field[@name='price_total']" position="after">
+                    <button name="action_show_details"
+                            type="object"
+                            icon="fa-list"
+                            options="{&quot;warn&quot;: true}"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after">
+                    <field name="cost_plus" />
+                    <field name="cost_plus_perc" invisible="1"/>
+                    <field name="unit_cost"/>
+                    <field name="total_cost"/>
+                    <field name="margin_perc"/>
+                    <field name="margin_price"/>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_show_boq_lines"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                            string="BOQ Lines"/>
+                </xpath>
+
+
+            </field>
+        </record>
+
+        <record id="view_contract_filter" model="ir.ui.view">
+            <field name="name">Contract.list.select</field>
+            <field name="model">sale.order</field>
+            <field name="priority" eval="30"/>
+            <field name="arch" type="xml">
+                <search string="Search Contract">
+                    <field name="name" string="Contract"
+                           filter_domain="['|','|',('name','ilike',self),('client_order_ref','ilike',self),('partner_id','child_of',self)]"/>
+                    <field name="partner_id" operator="child_of"/>
+                    <field name="user_id"/>
+                    <field name="team_id" string="Sales Team"/>
+                    <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
+                    <field name="order_line" string="Product"
+                           filter_domain="[('order_line.product_id', 'ilike', self)]"/>
+                    <filter string="My Orders" domain="[('user_id','=',uid)]" name="my_sale_orders_filter"/>
+                    <separator/>
+                    <filter string="My Activities" name="activities_my"
+                            domain="[('activity_ids.user_id', '=', uid)]"/>
+                    <separator/>
+                    <filter string="Late Activities" name="activities_overdue"
+                            domain="[('activity_ids.date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                            help="Show all records which has next action date is before today"/>
+                    <filter string="Today Activities" name="activities_today"
+                            domain="[('activity_ids.date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="Future Activities" name="activities_upcoming_all"
+                            domain="[('activity_ids.date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))
+                        ]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Salesperson" name="salesperson" domain="[]" context="{'group_by':'user_id'}"/>
+                        <filter name="customer" string="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Contract Date" name="order_month" domain="[]"
+                                context="{'group_by':'date_order'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <!--TODO the most powerfull window action-->
+        <record id="contract_action_window" model="ir.actions.act_window">
+            <field name="name">Contracts</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,form,search</field>
+            <field name="target">current</field>
+            <field name="domain">[('is_contract','=',True)]</field>
+            <field name="context">{'default_is_contract':True}</field>
+            <field name="search_view_id" ref="view_contract_filter"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="contract_action_window_view_tree">
+            <field name="view_mode">tree</field>
+            <field name="sequence">1</field>
+            <field name="view_id" ref="sale.view_quotation_tree"/>
+            <field name="act_window_id" ref="contract_action_window"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="contract_action_window_view_form">
+            <field name="view_mode">form</field>
+            <field name="sequence">2</field>
+            <field name="view_id" ref="view_order_form"/>
+            <field name="act_window_id" ref="contract_action_window"/>
+        </record>
+
+        <menuitem id="customer_contract_menu" name="Customer Contract" parent="customers_root_menu"
+                  action="contract_action_window" sequence="1"/>
+
+        <!--TODO: Override Default Sale Actions -->
+        <record id="sale.action_orders" model="ir.actions.act_window">
+            <field name="domain">[('is_contract', '=', False), ('state', 'not in', ('draft', 'sent', 'cancel'))]</field>
+            <field name="context">{'default_is_contract': False}</field>
+
+        </record>
+        <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+            <field name="domain">[('is_contract', '=', False)]</field>
+            <field name="context">{'default_is_contract': False, 'search_default_my_quotation': 1}</field>
+        </record>
+    </data>
+</odoo>

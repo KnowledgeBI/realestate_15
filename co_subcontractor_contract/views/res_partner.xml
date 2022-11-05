@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Inherit Form View to Modify it -->
+    <record id="modify_res_partner_view" model="ir.ui.view">
+        <field name="name">Modify Res Partner View</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//group[@name='purchase']" position="inside">
+                <field name="is_subcontractor"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="modify_res_partner_filter" model="ir.ui.view">
+        <field name="name">Modify Res Partner Filter</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter string="Subcontractor" name="is_subcontractor"
+                        domain="[('is_subcontractor','=',True)]"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_partner_subcontractor_form" model="ir.actions.act_window">
+        <field name="name">Subcontractor</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="domain">[]</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">
+            {'search_default_is_subcontractor': 1,'default_is_subcontractor':1}
+        </field>
+    </record>
+
+</odoo>

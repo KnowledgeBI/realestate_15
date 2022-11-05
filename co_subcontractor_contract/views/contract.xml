@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="adding_analytic_account_in_purchase_order" model="ir.ui.view">
+            <field name="name">Adding Analytic Account</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="account_analytic_id" string="Project" required="1"/>
+                    <field name="category_id"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="context">{'default_account_analytic_id': account_analytic_id}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']//field[@name='account_analytic_id']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="mode">primary</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='account_analytic_id']" position="after">
+                    <field name="is_contract" readonly="1" force_save="1"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="purchase_order_tree" model="ir.ui.view">
+            <field name="name">purchase.order.contract</field>
+            <field name="model">purchase.order</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Order" multi_edit="1" decoration-bf="message_unread==True"
+                      class="o_purchase_order" sample="1">
+                    <header>
+                        <button name="action_create_invoice" type="object" string="Create Bills"/>
+                    </header>
+                    <field name="priority" optional="show" widget="priority" nolabel="1"/>
+                    <field name="message_unread" invisible="1"/>
+                    <field name="partner_ref" optional="hide"/>
+                    <field name="name" string="Reference" readonly="1" decoration-bf="1"/>
+                    <field name="date_approve" invisible="context.get('quotation_only', False)" optional="show"/>
+                    <field name="partner_id" readonly="1"/>
+                    <field name="company_id" readonly="1" options="{'no_create': True}"
+                           groups="base.group_multi_company" optional="show"/>
+                    <field name="date_planned" invisible="context.get('quotation_only', False)" optional="show"/>
+                    <field name="user_id" optional="show" widget="many2one_avatar_user"/>
+                    <field name="date_order"
+                           attrs="{'invisible': ['|', '|', ('state', '=', 'purchase'), ('state', '=', 'done'), ('state', '=', 'cancel')]}"
+                           invisible="not context.get('quotation_only', False)" widget="remaining_days"
+                           optional="show"/>
+                    <field name="activity_ids" widget="list_activity" optional="show"/>
+                    <field name="origin" optional="show"/>
+                    <field name="amount_untaxed" sum="Total Untaxed amount" string="Untaxed" widget="monetary"
+                           optional="hide"/>
+                    <field name="amount_total" sum="Total amount" widget="monetary" optional="show" decoration-bf="1"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="state" optional="show" widget="badge"
+                           decoration-success="state == 'purchase' or state == 'done'"
+                           decoration-warning="state == 'to approve'"
+                           decoration-info="state == 'draft' or state == 'sent'"/>
+                    <field name="invoice_status" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="purchase_order_window_action" model="ir.actions.act_window">
+            <field name="name">Contract</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,form,search</field>
+            <field name="domain">[('is_contract', '=', True)]</field>
+            <field name="context">{'default_is_contract': True}</field>
+            <field name="target">current</field>
+        </record>
+
+
+        <record model="ir.actions.act_window.view" id="purchase_order_tree_view_action">
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="purchase_order_tree"/>
+            <field name="act_window_id" ref="purchase_order_window_action"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="purchase_order_form_view_action">
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="purchase_order_form"/>
+            <field name="act_window_id" ref="purchase_order_window_action"/>
+        </record>
+
+
+        <menuitem id="subcontractors_root_menu"
+                  name="Subcontractors"
+                  parent="co_project.construction_root_menu"
+                  sequence="10"/>
+
+        <menuitem id="contract_menu"
+                  name="Contract"
+                  parent="subcontractors_root_menu"
+                  action="purchase_order_window_action"
+                  sequence="1"/>
+
+        <menuitem id="subcontractors_menu"
+                  name="Subcontractors"
+                  parent="subcontractors_root_menu"
+                  action="co_subcontractor_contract.action_partner_subcontractor_form"
+                  sequence="3"/>
+
+        <!--TODO: Override Default Purchase Actions-->
+        <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+            <field name="domain">[('is_contract', '=', False), ('state','in',('purchase', 'done'))]</field>
+            <field name="context">{'default_is_contract': False}</field>
+        </record>
+
+        <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+            <field name="domain">[('is_contract', '=', False)]</field>
+            <field name="context">{'default_is_contract': False}</field>
+        </record>
+
+
+    </data>
+</odoo>
+
+

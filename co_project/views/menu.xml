@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem
+                id="construction_root_menu"
+                name="Contracting"
+                sequence="10"
+                web_icon="co_project,static/description/const_icon.png"
+        />
+        <menuitem id="project_menu" name="Projects" parent="construction_root_menu" sequence="1"
+                  action="action_project_form"/>
+        <menuitem id="reports_menu" name="Reports" parent="construction_root_menu" sequence="60"/>
+        <menuitem id="configuration_menu" name="Configuration" parent="construction_root_menu" sequence="100"/>
+
+    </data>
+</odoo>

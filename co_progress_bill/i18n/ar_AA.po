@@ -1,0 +1,685 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* co_progress_bill
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-01 20:41+0000\n"
+"PO-Revision-Date: 2020-11-01 23:05+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: aa\n"
+"X-Generator: Poedit 2.4.1\n"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid ""
+"<span class=\"o_form_label\" attrs=\"{'invisible': ['|',('state','!=','draft'), ('type','!=','in_invoice')]}\">Draft Bill\n"
+"                        </span>\n"
+"                        <span class=\"o_form_label\" attrs=\"{'invisible': [('sequence_number_next_prefix','=',False)]}\">-\n"
+"                            First Number:\n"
+"                        </span>\n"
+"                        <span class=\"o_form_label\" attrs=\"{'invisible': ['|',('state','!=','draft'), ('type','!=','in_refund')]}\">Draft\n"
+"                            Credit Note\n"
+"                        </span>\n"
+"                        <span class=\"o_form_label\" attrs=\"{'invisible': ['|',('state', '=', 'draft'), ('type','!=','in_invoice')]}\">Bill\n"
+"                        </span>\n"
+"                        <span class=\"o_form_label\" attrs=\"{'invisible': ['|',('state', '=', 'draft'), ('type','!=','in_refund')]}\">Credit\n"
+"                            Note\n"
+"                        </span>"
+msgstr ""
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid ""
+"<span class=\"o_form_label\" attrs=\"{'invisible': ['|',('state','=','draft'), ('type','!=','out_refund')]}\">Credit Note\n"
+"                    </span>"
+msgstr ""
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid ""
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">Amount</span>\n"
+"                                    <span groups=\"account.group_show_line_subtotals_tax_included\">Total Price</span>"
+msgstr ""
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">المبلغ</span>\n"
+"                                    <span groups=\"account.group_show_line_subtotals_tax_included\">السعر الإجمالي</span>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<span>Current QTY</span>"
+msgstr "<span>الكمية الحالية</span>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<span>Description</span>"
+msgstr "<span>الوصف</span>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<span>Previous QTY</span>"
+msgstr "<span>الكمية السابقة</span>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<span>Quantity</span>"
+msgstr "<span>الكمية</span>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<span>Total</span>"
+msgstr "<span>الاجمالي</span>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<span>Unit Of Measure</span>"
+msgstr "<span>وحدة القياس</span>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<span>Unit Price</span>"
+msgstr "<span>سعر الوحدة</span>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr "<strong class=\"mr16\">الإجمالي الفرعي</strong>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid ""
+"<strong class=\"text-center\">Scan me with your banking app.</strong>\n"
+"                            <br/>\n"
+"                            <br/>"
+msgstr ""
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid ""
+"<strong class=\"text-center\">The SEPA QR Code informations are not set correctly.</strong>\n"
+"                            <br/>"
+msgstr ""
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<strong>Customer Code:</strong>"
+msgstr "<strong>كود العميل:</strong>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<strong>Description:</strong>"
+msgstr "<strong>الوصف:</strong>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<strong>Due Date:</strong>"
+msgstr "<strong>تاريخ الاستحقاق:</strong>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<strong>Invoice Date:</strong>"
+msgstr "<strong>تاريخ الفاتورة:</strong>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<strong>Paid</strong>"
+msgstr "<strong>مدفوع</strong>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<strong>Reference:</strong>"
+msgstr "<strong>رقم الإشارة:</strong>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<strong>Remaining</strong>"
+msgstr "<strong>متبقي</strong>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<strong>Source:</strong>"
+msgstr "<strong>المصدر:</strong>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "<strong>Total</strong>"
+msgstr "<strong>الإجمالي</strong>"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Add Credit Note"
+msgstr "إضافة إشعار دائن"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Add a line"
+msgstr "إضافة بند"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Add a note"
+msgstr "إضافة ملاحظة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Add a section"
+msgstr "إضافة قسم"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Additional notes..."
+msgstr "ملاحظات إضافية..."
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Amount"
+msgstr "المبلغ"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_tree_inherit
+msgid "Amount Due"
+msgstr "المبلغ المستحق"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Ask for a Credit Note"
+msgstr "طلب إشعار دائن"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Auto-Complete"
+msgstr "الإكمال التلقائي"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Auto-detect"
+msgstr "اكتشاف تلقائي"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Bank Account"
+msgstr "حساب بنكي"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Bill"
+msgstr "فاتورة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Bill Date"
+msgstr "تاريخ الفاتورة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Bill lines"
+msgstr "بنود الفاتورة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid ""
+"Cancelled\n"
+"                                    Progress Invoice"
+msgstr ""
+"ملغي\n"
+"                                    مستخلصات العملاء"
+
+#. module: co_progress_bill
+#: model:ir.model.fields,field_description:co_progress_bill.field_account_invoice__sale_id
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Contract"
+msgstr "العقد"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_contract_form
+msgid "Create Invoice"
+msgstr "إنشاء فاتورة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Current Qty"
+msgstr "الكمية الحالية"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_tree_inherit
+msgid "Customer"
+msgstr "العميل"
+
+#. module: co_progress_bill
+#: model:ir.model.fields,field_description:co_progress_bill.field_account_invoice__date_from
+msgid "Date from"
+msgstr "تاريخ البدء"
+
+#. module: co_progress_bill
+#: model:ir.model.fields,field_description:co_progress_bill.field_account_invoice__date_to
+msgid "Date to"
+msgstr "‫تاريخ الانتهاء"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Disc (%)"
+msgstr "الخصم (%)"
+
+#. module: co_progress_bill
+#: model:ir.model.fields,field_description:co_progress_bill.field_account_invoice_line__done_percent
+msgid "Done Percent(%)"
+msgstr ""
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid ""
+"Draft\n"
+"                                    Progress Invoice"
+msgstr ""
+"مسوردة\n"
+"                                    مستخلصات العملاء"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Draft Credit Note"
+msgstr "مسودة إشعار خصم"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Draft Invoice"
+msgstr "مسودة فاتورة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Due Date"
+msgstr "تاريخ الاستحقاق"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Future Activities"
+msgstr "الأنشطة القادمة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "In Payment"
+msgstr "في دفعة"
+
+#. module: co_progress_bill
+#: model:ir.model,name:co_progress_bill.model_account_invoice
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_tree_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Invoice"
+msgstr "فاتورة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Invoice Date"
+msgstr "تاريخ الفاتورة"
+
+#. module: co_progress_bill
+#: model:ir.model,name:co_progress_bill.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "بند الفاتورة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Invoice Lines"
+msgstr "بنود الفاتورة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Invoice Number:"
+msgstr "رقم الفاتورة:"
+
+#. module: co_progress_bill
+#: model:ir.actions.act_window,name:co_progress_bill.account_invoice_action_window
+#: model:ir.model.fields,field_description:co_progress_bill.field_sale_order__invoice_num
+#: model:ir.model.fields,field_description:co_progress_bill.field_sale_order__invoices
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_contract_form
+msgid "Invoices"
+msgstr "الفواتير"
+
+#. module: co_progress_bill
+#: model:ir.model.fields,field_description:co_progress_bill.field_sale_order_line__invoice_line_ids
+msgid "Invoices Lines (Sale)"
+msgstr ""
+
+#. module: co_progress_bill
+#: model:ir.model.fields,field_description:co_progress_bill.field_account_invoice__is_progress_bill
+msgid "Is Progress Bill"
+msgstr "مستخلص"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Late Activities"
+msgstr "الأنشطة المتأخرة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "My Activities"
+msgstr "أنشطتي"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "My Invoices"
+msgstr "فواتيري"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Open"
+msgstr "فتح"
+
+#. module: co_progress_bill
+#: model:ir.model.fields,field_description:co_progress_bill.field_account_invoice_line__order_qty
+msgid "Order Qty"
+msgstr "كمية التعاقد"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Other Info"
+msgstr "معلومات أخرى"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Overdue"
+msgstr "المستحقات المتأخرة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Overdue invoices, maturity date passed"
+msgstr "الفواتير المتأخرة, انتهى تاريخ استحقاقها"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Paid"
+msgstr "مدفوع"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Partner"
+msgstr "الشريك"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Period"
+msgstr "فترة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "Please use the following communication for your payment :"
+msgstr "برجاء استخدام هذا المرجع عند السداد:"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Preview"
+msgstr "المعاينة"
+
+#. module: co_progress_bill
+#: model:ir.model.fields,field_description:co_progress_bill.field_account_invoice_line__previous_qty
+msgid "Previous Qty"
+msgstr "الكمية السابقة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Price"
+msgstr "سعر"
+
+#. module: co_progress_bill
+#: model:ir.ui.menu,name:co_progress_bill.bill_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_tree_inherited
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "Progress Bill"
+msgstr "مستخلصات المقاولين"
+
+#. module: co_progress_bill
+#: model:ir.actions.act_window,name:co_progress_bill.invoice_supplier_window_action
+msgid "Progress Bills"
+msgstr ""
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "Progress Credit Note"
+msgstr ""
+
+#. module: co_progress_bill
+#: model:ir.ui.menu,name:co_progress_bill.invoice_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "Progress Invoice"
+msgstr "مستخلصات العملاء"
+
+#. module: co_progress_bill
+#: model:ir.actions.report,name:co_progress_bill.progress_invoice_report
+msgid "Progress Invoice/Bill"
+msgstr "مستخلصات العملاء/موردين"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.progress_invoice_document
+msgid "Progress refund"
+msgstr ""
+
+#. module: co_progress_bill
+#: model:ir.model.fields,field_description:co_progress_bill.field_account_invoice__account_analytic_id
+msgid "Project"
+msgstr "المشروع"
+
+#. module: co_progress_bill
+#: model:ir.model,name:co_progress_bill.model_purchase_order
+msgid "Purchase Order"
+msgstr "أمر شراء"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Purchase Representative"
+msgstr "مندوب المشتريات"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Quantity:"
+msgstr "الكمية:"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Register Payment"
+msgstr "تسجيل دفعة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Reset to Draft"
+msgstr "إعادة التعيين لمسودة"
+
+#. module: co_progress_bill
+#: model:ir.model.fields,field_description:co_progress_bill.field_account_invoice_line__sale_line_id
+msgid "Sale Line"
+msgstr "بند البيع"
+
+#. module: co_progress_bill
+#: model:ir.model,name:co_progress_bill.model_sale_order
+msgid "Sale Order"
+msgstr "أمر البيع"
+
+#. module: co_progress_bill
+#: model:ir.model,name:co_progress_bill.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "بند أمر البيع"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Salesperson"
+msgstr "موظف المبيعات"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Search Invoice"
+msgstr "البحث فى الفاتورة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Select an old vendor bill"
+msgstr "اختر فاتورة مورد قديمة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Send & Print"
+msgstr "إرسال وطباعة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Set to Draft"
+msgstr "تعيين كمسودة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Show all records which has next action date is before today"
+msgstr "عرض كافة السجلات التي تاريخ الإجراء التالي فيها يسبق تاريخ اليوم الجاري"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Status"
+msgstr "الحالة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Subtotal"
+msgstr "الإجمالي الفرعي"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_tree_inherited
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_tree_inherit
+msgid "Tax"
+msgstr "الضريبة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_tree_inherited
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_tree_inherit
+msgid "Tax Excluded"
+msgstr "بدون ضرائب"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Taxes"
+msgstr "الضرائب"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Terms and conditions..."
+msgstr "الشروط والأحكام..."
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_tree_inherited
+msgid "To Pay"
+msgstr "للسداد"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_tree_inherited
+msgid "To pay"
+msgstr "للسداد"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.view_account_invoice_filter_inherited
+msgid "Today Activities"
+msgstr "نشاطات اليوم"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_tree_inherited
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_tree_inherit
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: co_progress_bill
+#: model:ir.model.fields,field_description:co_progress_bill.field_account_invoice_line__total_qty
+msgid "Total Qty"
+msgstr "الكمية الاجمالية"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "Unit Price:"
+msgstr "سعر الوحدة:"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Validate"
+msgstr "اعتماد"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_tree_inherited
+msgid "Vendor"
+msgstr "المورّد"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Vendor Bill"
+msgstr "فاتورة المورد"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "Vendor Reference"
+msgstr "مرجع المورد"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "You have"
+msgstr "لديك"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "for this customer. You can allocate them to mark this invoice as paid."
+msgstr "لهذا العميل. يمكنك توزيعها لإتمام سداد هذه الفاتورة وتحويلها إلى مدفوعة."
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "for this supplier. You can allocate them to mark this bill as paid."
+msgstr "لهذا المورد. يمكنك توزيعها لإتمام سداد هذه الفاتورة وتحويلها إلى مدفوعة."
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_supplier_form_inherited
+msgid "outstanding debits"
+msgstr "الديون المستحقة"
+
+#. module: co_progress_bill
+#: model_terms:ir.ui.view,arch_db:co_progress_bill.invoice_form_inherit
+msgid "outstanding payments"
+msgstr "مدفوعات معلقة"

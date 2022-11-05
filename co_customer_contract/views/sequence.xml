@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="seq_customer_contract" model="ir.sequence">
+            <field name="name">Customer Contract Seq</field>
+            <field name="code">seq.customer.contract</field>
+            <field name="prefix">CON/%(year)s/</field>
+            <field name="padding">4</field>
+        </record>
+
+    </data>
+</odoo>

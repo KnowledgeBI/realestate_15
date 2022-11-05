@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <menuitem id="customers_root_menu" name="Customers" parent="co_project.construction_root_menu" sequence="5"/>
+
+        <menuitem id="customers_sub_menu" name="Customers" parent="customers_root_menu" sequence="5"
+                  action="base.action_partner_form"/>
+
+    </data>
+</odoo>

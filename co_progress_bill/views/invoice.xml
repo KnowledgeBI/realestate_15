@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_move_form_invoice" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="inside">
+                <button name="set_project_sector" string="Set Project And Sector"
+                        type="object" states="draft" class="oe_highlight"/>
+            </xpath>
+
+            <xpath expr="//field[@name='account_analytic_id']" position="attributes">
+                <attribute name="required">1</attribute>
+                <attribute name="string">Project</attribute>
+                <attribute name="domain">[('is_project', '=', 'True')]</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="date_from" required="1"/>
+                <field name="date_to" required="1"/>
+            </xpath>
+
+            <xpath expr="//group[@id='header_right_group']" position="inside">
+                <field name="sale_id" string="Contract" required="1"/>
+                <field name="is_progress_bill"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']//tree/field[@name='quantity']" position="after">
+                <field name="order_qty" readonly="1" force_save="1"/>
+                <field name="previous_qty" readonly="1" force_save="1"/>
+                <field name="sale_line_id" invisible="1" force_save="1"/>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']//tree/field[@name='quantity']" position="after">
+                <field name="order_qty" force_save="1" incisible="1"/>
+                <field name="previous_qty" force_save="1" incisible="1"/>
+                <field name="sale_line_id" force_save="1" incisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_invoice_tree_invoice" model="ir.ui.view">
+        <field name="name">account.move.name</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="account_analytic_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="action_move_out_invoice_type" model="ir.actions.act_window">
+        <field name="name">Progress Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+        <field name="domain">[('move_type', '=', 'out_invoice'),('is_progress_bill','=',True)]</field>
+        <field name="context">{'default_move_type': 'out_invoice','journal_type': 'sale', 'default_is_progress_bill':
+            True}
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="action_move_out_invoice_type_view_tree">
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_invoice_tree_invoice"/>
+        <field name="act_window_id" ref="action_move_out_invoice_type"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="action_move_out_invoice_type_view_form">
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_move_form_invoice"/>
+        <field name="act_window_id" ref="action_move_out_invoice_type"/>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="invoice_progress_bill" name="Progress Invoice"
+              parent="co_customer_contract.customers_root_menu"
+              action="action_move_out_invoice_type"
+              sequence="3"/>
+
+    <!--        <report-->
+    <!--                id="report_export_progress_invoice"-->
+    <!--                model="account.move"-->
+    <!--                string="Progress Invoice/Bill XLSX"-->
+    <!--                report_type="xlsx"-->
+    <!--                name="co_progress_bill.progress_invoice_xlsx_template"-->
+    <!--                file="co_progress_bill.progress_invoice_xlsx_template"-->
+    <!--                attachment_use="True"-->
+    <!--                menu="True"-->
+    <!--        />-->
+
+</odoo>
