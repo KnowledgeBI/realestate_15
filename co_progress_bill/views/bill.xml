@@ -18,15 +18,18 @@
                 <field name="date_from" required="1"/>
                 <field name="date_to" required="1"/>
             </xpath>
-<!--            <xpath expr="//field[@name='amount_total']" position="attributes">-->
-<!--                <attribute name="string">Current Work</attribute>-->
-<!--            </xpath>-->
-<!--            <xpath expr="//field[@name='amount_total']" position="before">-->
+
+<!--        <xpath expr="//field[@name='amount_total']" position="attributes">
+                <attribute name="string">Current Work</attribute>
+            </xpath> -->
+<!--       <xpath expr="//field[@name='amount_total']" position="before">
+                <field name="current_work"/>
+                <field name="previous_work"/>
+                <field name="previous_payment"/>
+                <field name="total_due"/>
+            </xpath> -->
             <xpath expr="//field[@name='tax_totals_json']" position="before">
-<!--                <field name="current_work"/>-->
-<!--                <field name="previous_work"/>-->
-<!--                <field name="previous_payment"/>-->
-<!--                <field name="total_due"/>-->
+
                 <label for="current_work" groups="base.group_user"/>
                     <div class="text-nowrap" groups="base.group_user">
                         <field name="current_work" class="oe_inline"/>
