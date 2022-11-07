@@ -11,6 +11,8 @@ class AnalyticAccount(models.Model):
     _inherit = 'account.analytic.account'
 
     is_project = fields.Boolean(string="Project", )
+    is_boq_follow_up = fields.Boolean(string="BOQ Follow UP", )
+
     picking_type_id = fields.Many2one(comodel_name="stock.picking.type", string="Operation Type", required=False, )
     parent_group_id = fields.Many2one(comodel_name="account.analytic.group", string="Parent Group",
                                       related="group_id.parent_id", store=True)

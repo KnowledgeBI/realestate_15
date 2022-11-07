@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_category.name,equipment.category.name,model_category_name,,1,1,1,1
+access_equipment_timesheet,equipment.timesheet,model_equipment_timesheet,,1,1,1,1
+access_equipment_timesheet_line,equipment.timesheet.line,model_equipment_timesheet_line,,1,1,1,1
+
+access_labor_timesheet,labor.timesheet,model_labor_timesheet,,1,1,1,1
+access_labor_timesheet_line,labor.timesheet.line,model_labor_timesheet_line,,1,1,1,1

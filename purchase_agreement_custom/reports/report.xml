@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report id="action_agg_report"
+                string="طلب الشراء"
+                model="purchase.requisition"
+                report_type="qweb-pdf"
+                name="purchase_agreement_custom.agg_report"
+                file="purchase_agreement_custom.agg_report"
+        />
+        <record id="action_agg_report" model="ir.actions.report">
+            <field name="paperformat_id" ref="purchase_agreement_custom.paperformat_agg_template_report"/>
+        </record>
+        <template id="purchase_agreement_custom.agg_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="purchase_agreement_custom.report_agg_document_order" t-lang="ar"/>
+                </t>
+            </t>
+        </template>
+        <template id="report_agg_document_order">
+            <t t-call="purchase_agreement_custom.external_layout_agg_template">
+                <t t-set="doc" t-value="doc.with_context({'lang':ar})"/>
+                <div class="page" dir="rtl">
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <div  >
+                                <span style="font-weight:bold" >المشروع</span>
+                            </div>
+                            <div>
+                                <span t-field="doc.analytic_account_id"/>
+                            </div>
+
+                        </div>
+                        <div class="col-4 text-center">
+                            <h4 > </h4>
+                            <div >
+                                <span style="font-weight:bold">طلب شراء</span>
+                            </div>
+                            <div>
+                                <span t-esc="doc.name"/>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <img t-if="doc.company_id.logo" style="height: 100px;width: 100px;" t-att-src="image_data_uri(doc.company_id.logo)" alt="Logo"/>
+                        </div>
+
+                </div>
+                    <div class="row">
+                        <div class="col-4 text-right">
+                            <span style="font-weight:bold" >نوع الاعمال</span>:<span t-field="doc.category"/>
+                        </div>
+                        <div class="col-4">
+
+                        </div>
+
+                        <div class="col-4 text-center">
+                            <div  >
+                                <span style="font-weight:bold" >التاريخ</span>:<span t-field="doc.ordering_date"/>
+                            </div>
+
+                        </div>
+
+                </div>
+                    <div class="oe_structure"/>
+
+
+                     <style>
+                        .custom_table_lines thead th, .custom_table_lines tbody td{
+                        border: 1px solid #636161;
+                        padding: 5px;
+                         font-size:13px;
+                         text-align: right;
+                        }
+                        .custom_table_lines thead th{
+                        background: #ccc;
+                        color: #636161;
+                         font-size:14px;
+                         text-align: right;
+                        }
+
+                    </style>
+                        <div style="border-bottom: 1px solid black;"/>
+                    <br/>
+                     <div class="row">
+                    <table class="custom_table_lines" width="100%">
+                        <thead>
+                            <tr >
+                                <th>م</th>
+                                <th width="20%%">مركز التكلفة</th>
+                                <th>توصيف البند</th>
+                                <th>رقم البند بالمقايسة</th>
+                                <th>الكمية الكلية</th>
+                                <th>الكمية المطلوبة</th>
+                                <th>الوحدة</th>
+                                <th>تاريخ التوريد</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="line_index" t-value="0"/>
+
+                            <t t-foreach="doc.line_ids" t-as="line">
+                                <tr >
+                                    <td>
+                                        <t t-set="line_index" t-value="line_index+1"/>
+
+                                        <span t-esc="line_index"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.account_analytic_id"/>
+                                    </td>
+                                    <td>
+                                         <span t-field="line.description"/>
+                                    </td>
+                                    <td>
+                                         <span t-field="line.boq_ref"/>
+                                    </td>
+
+                                    <td>
+
+                                    </td>
+                                     <td>
+                                        <span t-esc="line.qty_ordered"/>
+                                    </td>
+
+                                    <td>
+                                         <span t-field="line.product_uom_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line.schedule_date"/>
+                                    </td>
+
+
+                                </tr>
+                            </t>
+
+                        </tbody>
+
+
+                    </table>
+</div>
+                    <br/>
+                    <div class="row" style="page-break-inside: avoid !important;">
+                        <div class="col-3 text-right" style="border:1px solid #636161;">
+                            <span style="font-size:13px">المكتب الفني</span><br/>
+                            <span style="font-size:13px">الاسم:</span><br/>
+                            <span style="font-size:13px">التوقيع:</span><br/>
+                            <span style="font-size:13px">التاريخ:</span><br/>
+                        </div>
+                        <div class="col-3 text-right" style="border:1px solid #636161;">
+                            <span style="font-size:13px">أمين المخزن بالموقع</span><br/>
+                            <span style="font-size:13px">الاسم:</span><br/>
+                            <span style="font-size:13px">التوقيع:</span><br/>
+                            <span style="font-size:13px">التاريخ:</span>
+                        </div>
+                        <div class="col-3 text-right" style="border:1px solid #636161;">
+                            <span style="font-size:13px">مدير المشروع</span><br/>
+                            <span style="font-size:13px">الاسم:</span><br/>
+                            <span style="font-size:13px">التوقيع:</span><br/>
+                            <span style="font-size:13px">التاريخ:</span>
+                        </div>
+                        <div class="col-3 text-right" style="border:1px solid #636161;">
+                            <span style="font-size:13px">مدير إدارة المخازن</span><br/>
+                            <span style="font-size:13px">الاسم:</span><br/>
+                            <span style="font-size:13px">التوقيع:</span><br/>
+                            <span style="font-size:13px">التاريخ:</span>
+                        </div>
+
+                    </div>
+                    <br/>
+                    <div class="row" >
+
+                        <div class="col-2 text-right">
+                            <span style="font-size:10px">Rev.1</span>
+                        </div>
+                        <div class="col-7 text-left">
+                            <span></span>
+                        </div>
+                         <div class="col-3 text-left">
+                            <span style="font-size:10px">PUF-07-01-07</span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

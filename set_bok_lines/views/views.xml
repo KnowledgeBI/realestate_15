@@ -1,0 +1,161 @@
+<odoo>
+    <data>
+        <record id="view_account_analytic_account_form" model="ir.ui.view">
+            <field name="name">account.analytic.account</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='code']" position="after">
+                    <field name="price_percent_inc"/>
+                    <field name="qty_percent_inc"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_contract_form" model="ir.ui.view">
+            <field name="name">sale.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="co_customer_contract.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_view_pr" string="Purchase Agreements" type="object" class="oe_stat_button" icon="fa-pencil-square-o"/>
+                    <button name="action_view_purchases" string="Purchases" type="object" class="oe_stat_button" icon="fa-shopping-cart"/>
+                    <button name="action_view_outs" string="Pickings" type="object" class="oe_stat_button" icon="fa-truck"/>
+<!--                    <button name="action_view_subcontractor" string="Contracts" type="object" class="oe_stat_button" icon="fa-pencil-square-o"/>-->
+
+                </xpath>
+            </field>
+        </record>
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase_order.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="after">
+                    <field name="boq_line_id" force_save="1" invisible="1"/>
+                    <field name="boq_ref" force_save="1" />
+                    <field name="area_id" force_save="1"/>
+                    <field name="floor_id" force_save="1"/>
+
+
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="is_boq_follow_up" />
+                    <field name="so_id" invisible="1"/>
+                    <div>
+                        <button attrs="{'invisible':['|',('is_boq_follow_up','=',False),('state','=','purchase')]}" string="Set Lines" context="{'esc':1}" type="object" name="set_bok_lines" icon="fa-list" />
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_picking_form" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='move_ids_without_package']/tree//field[@name='product_id']" position="after">
+                    <field name="boq_line_id"  force_save="1" invisible="1"/>
+                    <field name="boq_ref" force_save="1" />
+                    <field name="area_id" force_save="1"/>
+                    <field name="floor_id" force_save="1"/>
+
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="is_boq_follow_up" invisible="1"/>
+                    <field name="so_id" invisible="1"/>
+                    <div>
+                        <button invisible="1" attrs="{'invisible':['|',('is_boq_follow_up','=',False),('picking_type_code','!=','outgoing')]}" string="Set Lines" context="{'esc':1}" type="object" name="set_bok_lines" icon="fa-list" />
+                    </div>
+                </xpath>
+            </field>
+        </record>
+<!--        <record id="view_subcontract_requisition_form" model="ir.ui.view">-->
+<!--            <field name="name">subcontract.requisition.form.inherit</field>-->
+<!--            <field name="model">subcontract.requisition</field>-->
+<!--            <field name="inherit_id" ref="subcontract_requisition.view_subcontract_requisition_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='line_ids']/tree//field[@name='product_id']" position="after">-->
+<!--                    <field name="boq_line_id" force_save="1" invisible="1"/>-->
+<!--                    <field name="area_id" force_save="1" />-->
+<!--                    <field name="floor_id" force_save="1"/>-->
+
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='stock_picking_id']" position="after">-->
+<!--                    <field name="is_boq_follow_up" invisible="1"/>-->
+<!--                    <field name="so_id" invisible="1"/>-->
+<!--                    <div>-->
+<!--                        <button attrs="{'invisible':[('is_boq_follow_up','=',False)]}" string="Set Lines" context="{'esc':1}" type="object" name="set_bok_lines" icon="fa-list" />-->
+<!--                    </div>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+<!--        <record id="subcontract_order_form" model="ir.ui.view">-->
+<!--            <field name="name">subcontract_order.form.inherit</field>-->
+<!--            <field name="model">subcontract.order</field>-->
+<!--            <field name="inherit_id" ref="subcontract.subcontract_order_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="before">-->
+<!--                    <field name="boq_line_id" force_save="1" readonly="1"/>-->
+<!--                    <field name="boq_ref" force_save="1" />-->
+<!--                    <field name="area_id" force_save="1" />-->
+<!--                    <field name="floor_id" force_save="1"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+<!--        <record id="invoice_progress_form" model="ir.ui.view">-->
+<!--            <field name="name">account.invoice.form.inherit</field>-->
+<!--            <field name="model">account.invoice</field>-->
+<!--            <field name="inherit_id" ref="progress_invoice.invoice_progress_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='product_id']" position="before">-->
+<!--                    <field name="boq_line_id" force_save="1" readonly="1"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="view_subcontract_requisition_tree" model="ir.ui.view">-->
+<!--            <field name="name">subcontract.requisition.tree</field>-->
+<!--            <field name="model">subcontract.requisition</field>-->
+<!--            <field name="inherit_id" ref="subcontract_requisition.view_subcontract_requisition_tree"/>-->
+<!--            <field name="arch" type="xml">-->
+
+<!--                <xpath expr="//field[@name='origin']" position="after">-->
+<!--                    <field name="total_tax_amount"/>-->
+<!--                    <field name="amount_total"/>-->
+<!--                </xpath>-->
+
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="view_purchase_requisition_form" model="ir.ui.view">
+            <field name="name">purchase.requisition.form.inherit</field>
+            <field name="model">purchase.requisition</field>
+            <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="action_transfer" attrs="{'invisible':['|',('transfer_id','!=',False),('state','!=','in_progress')]}"  string="Transfer" type="object" class="btn-primary"/>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']/tree//field[@name='product_id']" position="before">
+                    <field name="area_id" force_save="1"/>
+                    <field name="sale_line_id" force_save="1" invisible="1"/>
+
+                    <field name="floor_id" force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']/tree//field[@name='product_id']" position="after">
+                    <field name="boq_line_id" force_save="1" invisible="1"/>
+
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="before">
+                    <field name="transfer_picking_type_id"/>
+                    <field name="transfer_id" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="so_id" invisible="1"/>
+                    <div>
+                        <button  attrs="{'invisible':[('state','!=','draft')]}" string="Set Lines" context="{'esc':1}" type="object" name="set_bok_lines" icon="fa-list" />
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_purchase_requisition_form_custom">
+             <field name="name">purchase.requisition.form.view.custom</field>
+             <field name="model">purchase.requisition</field>
+             <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+             <field name="arch" type="xml">
+                 <xpath expr="//button[@name='%(purchase_requisition.action_purchase_requisition_to_so)d'][2]" position="attributes">
+                     <attribute name="attrs">{'invisible': [('state', 'not in', ('ongoing', 'proc_approve'))]}</attribute>
+                 </xpath>
+                 <xpath expr="//button[@name='action_open']" position="after">
+                     <button name="proc_approve" states="in_progress" string="procurement Approve" type="object" class="btn-primary"/>
+                 </xpath>
+                 <xpath expr="//button[@name='action_open']" position="attributes">
+                     <attribute name="states"/>{
+                     <attribute name="attrs">{'invisible': [('state', 'not in', ('proc_approve'))]}</attribute>
+                 </xpath>
+                 <xpath expr="//field[@name='line_ids']/tree/field[@name='product_id']" position="after">
+                     <field name="description" required="1"/>
+                 </xpath>
+                 <xpath expr="//field[@name='line_ids']/tree/field[@name='product_id']" position="before">
+                     <field name="boq_ref" required="1"/>
+                 </xpath>
+                 <xpath expr="//field[@name='line_ids']" position="attributes">
+                     <attribute name="context">{'default_account_analytic_id':analytic_account_id}</attribute>
+                 </xpath>
+                 <field name="currency_id" position="after">
+                    <field name="analytic_account_id" required="1" domain="[('is_project','=',True)]"/>
+                    <field name="category" required="1"/>
+                 </field>
+             </field>
+
+        </record>
+        <record model="ir.ui.view" id="view_purchase__form_custom">
+             <field name="name">purchase.form.view.custom</field>
+             <field name="model">purchase.order</field>
+             <field name="inherit_id" ref="purchase.purchase_order_form"/>
+             <field name="arch" type="xml">
+                 <field name="currency_id" position="after">
+                    <field name="category" required="0"/>
+                 </field>
+             </field>
+        </record>
+   </data>
+</odoo>

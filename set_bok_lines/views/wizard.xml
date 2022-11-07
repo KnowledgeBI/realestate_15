@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="view_form" model="ir.ui.view">
+            <field name="name">set.boq.lines.form</field>
+            <field name="model">set.boq.lines</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                            <group>
+                                <field name="analytic_account_id" invisible="1"/>
+                                <field name="so_id" options="{'no_create':1,'no_edit':1}" domain="[('analytic_account_id','=',analytic_account_id)]"/>
+                            </group>
+
+                            <notebook>
+                                <page string="Lines">
+<!--                                    <button name="action_reset_qty" string="Reset Qty" class="oe_highlight"  type="object"/>-->
+                                    <field invisible="context.get('service_only')" name="line_ids" domain="[('order_id','=',so_id),('analytic_account_id','=',analytic_account_id),('product_id.type','in',['consu','product'])]" >
+                                        <tree editable="bottom">
+                                                <field name="order_line_id" readonly="1"/>
+                                                <field name="boq_ref"/>
+                                                <field name="area_id" readonly="1"/>
+                                                <field name="floor_id" readonly="1"/>
+                                                <field name="analytic_account_id"/>
+                                                <field name="product_id" readonly="1"/>
+                                                <field name="partner_id"/>
+                                                <field name="order_id"/>
+                                                <field name="name" readonly="0"/>
+                                                <field name="categ_id"/>
+                                                <field name="type"/>
+                                                <field name="ordered_qty" />
+                                                <field name="qty" sum="Total Qty" groups="set_bok_lines.group_show_boq_qty"/>
+                                                <field name="product_uom_id" readonly="1"/>
+                                                <field name="unit_cost" sum="Total Unit Cost" invisible="1"/>
+                                                <field name="subtotal_cost" sum="Total Subtotal Cost" invisible="1"/>
+                                        </tree>
+                                    </field>
+
+                                </page>
+                            </notebook>
+                    <footer>
+                        <button name="apply" string="Apply" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+        <record id="view_form2" model="ir.ui.view">
+            <field name="name">set.boq.lines.form</field>
+            <field name="model">set.boq.lines</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                            <group>
+                                <field name="analytic_account_id" invisible="1"/>
+                                <field name="so_id"/>
+                            </group>
+                            <notebook>
+                                <page string="Lines">
+<!--                                    <button name="action_reset_qty" string="Reset Qty" class="oe_highlight"  type="object"/>-->
+
+                                    <field invisible="not context.get('service_only')" name="line_ids" domain="[('order_id','=',so_id),('analytic_account_id','=',analytic_account_id),('product_id.type','in',['service'])]" >
+                                        <tree editable="bottom">
+                                            <field name="order_line_id" readonly="1"/>
+
+                                                <field name="boq_ref"/>
+                                                <field name="area_id" readonly="1"/>
+                                                <field name="floor_id" readonly="1"/>
+                                                <field name="analytic_account_id"/>
+                                                <field name="product_id" readonly="1"/>
+                                                <field name="partner_id"/>
+                                                <field name="order_id"/>
+                                                <field name="name" readonly="0"/>
+                                                <field name="categ_id"/>
+                                                <field name="type"/>
+                                                <field name="ordered_qty" />
+                                                <field name="qty" sum="Total Qty" groups="set_bok_lines.group_show_boq_qty"/>
+                                                <field name="product_uom_id" readonly="1"/>
+                                                <field name="unit_cost" sum="Total Unit Cost" invisible="1"/>
+                                                <field name="subtotal_cost" sum="Total Subtotal Cost" invisible="1"/>
+                                        </tree>
+                                    </field>
+
+                                </page>
+                            </notebook>
+                    <footer>
+                        <button name="apply" string="Apply" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+    </data>
+
+</odoo>

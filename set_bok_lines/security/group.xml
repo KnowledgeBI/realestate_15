@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="group_over_qty_boq_line" model="res.groups">
+            <field name="name">Confirm Over Qty Boq Lines</field>
+        </record>
+        <record id="group_over_price_boq_line" model="res.groups">
+            <field name="name">Confirm Over PriceBoq Lines</field>
+        </record>
+
+        <record id="group_show_boq_cost" model="res.groups">
+            <field name="name">Show Boq Cost</field>
+        </record>
+        <record id="group_show_boq_qty" model="res.groups">
+            <field name="name">Show Boq Qty</field>
+        </record>
+
+
+    </data>
+</odoo>

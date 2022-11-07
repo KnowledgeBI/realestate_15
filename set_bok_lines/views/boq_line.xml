@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="boq_line_view_tree" model="ir.ui.view">
+            <field name="name">boq.line</field>
+            <field name="model">boq.line</field>
+            <field name="inherit_id" ref="co_customer_contract.boq_line_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='qty']" position="attributes">
+                    <attribute name="groups">set_bok_lines.group_show_boq_qty</attribute>
+                </xpath>
+                <xpath expr="//field[@name='subtotal_cost']" position="attributes">
+                    <attribute name="groups">set_bok_lines.group_show_boq_cost</attribute>
+                </xpath>
+                <xpath expr="//field[@name='unit_cost']" position="attributes">
+                    <attribute name="groups">set_bok_lines.group_show_boq_cost</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='subtotal_cost']" position="after">
+                    <field name="purchase_qty" sum="Total Purchase Qty" groups="set_bok_lines.group_show_boq_qty"/>
+                    <field name="purchase_cost" sum="Total Purchase Cost" groups="set_bok_lines.group_show_boq_cost"/>
+                    <field name="project_out_qty" sum="Total Project Qty" groups="set_bok_lines.group_show_boq_qty"/>
+                    <field name="project_cost" sum="Total Project Cost" groups="set_bok_lines.group_show_boq_cost"/>
+                    <field name="service_qty" sum="Total Service Qty" groups="set_bok_lines.group_show_boq_qty"/>
+                    <field name="service_cost" sum="Total Service Cost" groups="set_bok_lines.group_show_boq_cost"/>
+                    <field name="remaining_qty" sum="Total Remain Qty" groups="set_bok_lines.group_show_boq_qty"/>
+                    <field name="remaining_cost" sum="Total Remain Cost" groups="set_bok_lines.group_show_boq_cost"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -22,6 +22,7 @@ class SaleOrderLine(models.Model):
     margin_price = fields.Float(string="Margin", compute="compute_margin_price", store=True)
     boq_line_ids = fields.One2many(comodel_name="boq.line", inverse_name="order_line_id", string="BOQ Lines",
                                    required=False, )
+    boq_ref = fields.Char('Boq Ref')
 
     @api.depends('boq_line_ids', 'boq_line_ids.subtotal_cost', 'product_uom_qty')
     def _compute_unit_cost(self):

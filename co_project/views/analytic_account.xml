@@ -13,6 +13,8 @@
                 <xpath expr="//field[@name='company_id']" position="after">
                     <field name="picking_type_id"/>
                     <field name="is_project"/>
+                    <field name="is_boq_follow_up"/>
+
                 </xpath>
 
                 <xpath expr="//field[@name='group_id']" position="after">

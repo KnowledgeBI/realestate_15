@@ -13,7 +13,14 @@ class BOQLine(models.Model):
     _description = 'BOQ Lines'
 
     order_line_id = fields.Many2one(comodel_name="sale.order.line", string="Order Line", required=False, )
+    order_id = fields.Many2one('sale.order',store=True,string='Order',related='order_line_id.order_id')
+    boq_ref = fields.Char('Boq Ref',related='order_line_id.boq_ref',store=True)
+
     area_id = fields.Many2one(comodel_name="boq.area", string="Area", required=False, )
+    floor_id = fields.Many2one(comodel_name="boq.floor", string="Floor", required=False, )
+    partner_id = fields.Many2one('res.partner',store=True,string='Partner',related='order_line_id.order_id.partner_id')
+    categ_id = fields.Many2one(comodel_name="product.category", string="Category", related="product_id.categ_id",
+                               store=True)
     product_id = fields.Many2one(comodel_name="product.product", string="Product", required=True, )
     type = fields.Selection([
         ('consu', 'Consumable'),

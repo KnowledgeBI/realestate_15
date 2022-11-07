@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+
+
+        <record id="group_equipment_timesheet" model="res.groups">
+            <field name="name">Equipment TimeSheet Approve</field>
+        </record>
+
+        <record id="group_labor_timesheet" model="res.groups">
+            <field name="name">Labor TimeSheet Approve</field>
+        </record>
+
+    </data>
+</odoo>

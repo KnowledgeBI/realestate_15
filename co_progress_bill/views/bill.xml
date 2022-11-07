@@ -18,14 +18,32 @@
                 <field name="date_from" required="1"/>
                 <field name="date_to" required="1"/>
             </xpath>
-            <xpath expr="//field[@name='amount_total']" position="attributes">
-                <attribute name="string">Current Work</attribute>
-            </xpath>
-            <xpath expr="//field[@name='amount_total']" position="before">
-                <field name="current_work"/>
-                <field name="previous_work"/>
-                <field name="previous_payment"/>
-                <field name="total_due"/>
+<!--            <xpath expr="//field[@name='amount_total']" position="attributes">-->
+<!--                <attribute name="string">Current Work</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='amount_total']" position="before">-->
+            <xpath expr="//field[@name='tax_totals_json']" position="before">
+<!--                <field name="current_work"/>-->
+<!--                <field name="previous_work"/>-->
+<!--                <field name="previous_payment"/>-->
+<!--                <field name="total_due"/>-->
+                <label for="current_work" groups="base.group_user"/>
+                    <div class="text-nowrap" groups="base.group_user">
+                        <field name="current_work" class="oe_inline"/>
+                    </div>
+                <label for="previous_work" groups="base.group_user"/>
+                    <div class="text-nowrap" groups="base.group_user">
+                        <field name="previous_work" class="oe_inline"/>
+                    </div>
+                <label for="previous_payment" groups="base.group_user"/>
+                    <div class="text-nowrap" groups="base.group_user">
+                        <field name="previous_payment" class="oe_inline"/>
+                    </div>
+                <label for="total_due" groups="base.group_user"/>
+                    <div class="text-nowrap" groups="base.group_user">
+                        <field name="total_due" class="oe_inline"/>
+                    </div>
+
             </xpath>
             <xpath expr="//group[@id='header_right_group']" position="inside">
                 <field name="purchase_id" string="Contract" required="1"/>
