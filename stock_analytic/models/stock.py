@@ -39,7 +39,11 @@ class StockMove(models.Model):
                     'analytic_account_id': self.analytic_account_id.id,
                 })
         return res
-
+    def _prepare_account_move_vals(self, credit_account_id, debit_account_id, journal_id, qty, description, svl_id, cost):
+        vals = super(StockMove, self)._prepare_account_move_vals(credit_account_id, debit_account_id, journal_id, qty, description, svl_id, cost)
+        if not vals.get('account_analytic_id'):
+            vals.update({"account_analytic_id":self.analytic_account_id.id})
+        return vals
 
 class StockMoveLine(models.Model):
     _inherit = "stock.move.line"
