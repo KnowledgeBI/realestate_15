@@ -23,7 +23,7 @@
     "data": [
         "views/stock_move_views.xml",
         "views/stock_scrap.xml",
-        "views/account_move.xml",
+        # "views/account_move.xml",
     ],
     'installable': True,
 }
