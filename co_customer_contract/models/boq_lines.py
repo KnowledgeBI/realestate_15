@@ -49,3 +49,11 @@ class Area(models.Model):
     _description = 'BOQ Area'
 
     name = fields.Char(string="Name", required=True)
+
+
+class Floor(models.Model):
+    _name = 'boq.floor'
+    _rec_name = 'name'
+    _description = 'BOQ Floor'
+
+    name = fields.Char(string="Name", required=True)
