@@ -18,7 +18,7 @@ class PurchaseOrder(models.Model):
     def _onchange_requisition_id(self):
         super(PurchaseOrder, self)._onchange_requisition_id()
         self.category = self.requisition_id.category
-        self.analytic_account_id = self.requisition_id.analytic_account_id.id
+        self.account_analytic_id = self.requisition_id.analytic_account_id.id
         self.so_id = self.requisition_id.so_id.id
 
 class PurchaseRequisitionline(models.Model):
