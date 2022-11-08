@@ -9,6 +9,8 @@ _logger = logging.getLogger(__name__)
 
 class POLine(models.Model):
     _inherit = 'purchase.order.line'
+    categ_id = fields.Many2one(comodel_name="product.category", string="Category", related='product_id.categ_id',
+                               store=True)
     boq_line_id = fields.Many2one('boq.line',string='Boq Line Ref')
     boq_ref = fields.Char('Boq Ref')
     area_id = fields.Many2one('boq.area', string='Building')
