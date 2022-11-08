@@ -42,7 +42,8 @@ class BOQLine(models.Model):
             tot = 0
             cost = 0
             for rec in boqline.po_line_ids:
-                if rec.state == 'purchase' and not rec.canceled:
+                # if rec.state == 'purchase' and not rec.canceled:
+                if rec.state == 'purchase' :
                     tot += rec.product_qty
                     cost += rec.price_total
             boqline.purchase_qty = tot
@@ -54,7 +55,8 @@ class BOQLine(models.Model):
             tot = 0
             cost = 0
             for rec in boqline.stockmove_ids:
-                if rec.state == 'done' and not rec.boq_line_id.canceled:
+                # if rec.state == 'done' and not rec.boq_line_id.canceled:
+                if rec.state == 'done' :
                     tot += rec.quantity_done
                     cost += rec.price_unit
             boqline.project_out_qty = tot
