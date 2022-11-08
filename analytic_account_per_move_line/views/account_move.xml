@@ -1,0 +1,54 @@
+<data>
+    <record id="inherit_account_move_form" model="ir.ui.view">
+        <field name="name">inherit.account.move.form</field>
+        <field name="model">account.move</field>
+        <!--<field name="groups_id" eval="[(4, ref(''))]"/>-->
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <field name="payment_reference" position="after">
+                <field name="analytic_account_id"
+                    options="{'no_create': True,'no_quick_create': True}"
+                />
+                <field name="analytic_tag_ids" widget="many2many_tags"
+                    options="{'no_create': True,'no_quick_create': True}"
+                />
+            </field>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="options">{'no_create': True,'no_quick_create': True}</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='analytic_account_id']" position="attributes">
+                <attribute name="options">{'no_create': True,'no_quick_create': True}</attribute>
+                <attribute name="force_save">True</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='analytic_tag_ids']" position="attributes">
+                <attribute name="options">{'no_create': True,'no_quick_create': True}</attribute>
+                <attribute name="force_save">True</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='line_ids']//tree//field[@name='analytic_account_id']" position="attributes">
+                <attribute name="options">{'no_create': True,'no_quick_create': True}</attribute>
+                <attribute name="force_save">True</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='line_ids']//tree//field[@name='analytic_tag_ids']" position="attributes">
+                <attribute name="options">{'no_create': True,'no_quick_create': True}</attribute>
+                <attribute name="force_save">True</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+<!--    <record id="account_move_server_action" model="ir.actions.server">-->
+<!--        <field name="name">Update Analytic Account</field>-->
+<!--        <field name="model_id" ref="model_account_move"/>-->
+<!--        <field name="binding_model_id" ref="model_account_move"/>-->
+<!--        <field name="binding_type">action</field>-->
+<!--        <field name="condition" eval="True"/>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">-->
+<!--            action = model._onchange_analytic_account_id()-->
+<!--        </field>-->
+<!--    </record>-->
+</data>
