@@ -91,7 +91,14 @@ class EquipmentTimeSheet(models.Model):
                      'name': line.note or self.name,
                      'analytic_account_id': self.analytic_account_id.id,
                      'debit': line.total_cost}))
-        line_vals.append((0, 0, {'account_id': self.journal_id.default_credit_account_id.id,
+        if not self.journal_id.outbound_payment_method_line_ids :
+            raise exceptions.ValidationError("Please set Outstanding payment accounts on journal :{}".format(self.journal_id.name))
+        if not self.journal_id.outbound_payment_method_line_ids[0].payment_account_id :
+            raise exceptions.ValidationError("Please set Outstanding payment accounts on journal :{}".format(self.journal_id.name))
+
+        payment_credit_account_id = self.journal_id.outbound_payment_method_line_ids[0].payment_account_id
+
+        line_vals.append((0, 0, {'account_id': payment_credit_account_id.id,
                         'product_id': False,
                         'analytic_account_id': self.analytic_account_id.id,
                         'credit': self.total_cost}))
